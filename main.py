@@ -97,6 +97,45 @@ line2.addWidget(baton5)
 linemenu.addLayout(line2)
 linemenu.addWidget(baton6)
 
+def add_note():
+    note_name, ok = QInputDialog.getText(window,"Додати замітку","Назва замітки")
+    if ok and note_name != "":
+        notes[note_name] = {"текст": "", "теги": []}
+        pole2.clear()
+        pole1.clear()
+        pole2.addItems(notes)
+
+        with open("notes_data.json", "w", encoding="utf-8") as file:
+            json.dump(notes, file, ensure_ascii=False)
+
+def save_note():
+    if pole2.selectedItems():
+        key = pole2.selectedItems()[0].text()
+        notes[key]["текст"] = pole1.toPlainText()
+        with open("notes_data.json", "w", encoding="utf-8") as file:
+            json.dump(notes, file, ensure_ascii=False)
+    else:
+        print("Замітка для збереження не вибрана")
+
+def show_note():
+    key = pole2.selectedItems()[0].text() #вибирає ключ
+    print(key)
+    pole1.setText(notes[key]["текст"])
+    pole3.clear()
+    pole3.addItems(notes[key]["теги"])
+
+def del_note():
+    if pole2.selectedItems():
+        key = pole2.selectedItems()[0].text()
+        notes.pop(key)
+        pole2.clear()
+        pole3.clear()
+
+
+
+
+
+
 window.setLayout(mainline)
 window.show()
 

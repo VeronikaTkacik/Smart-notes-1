@@ -17,7 +17,7 @@ app.setStyleSheet("""
     }
 
     QPushButton {
-        background-color: purple;
+        background-color: blue;
         color : #aaaaff;
         border-radius: 7px ;
         border-color: #3232ff;
@@ -30,7 +30,7 @@ app.setStyleSheet("""
     }
                   
     QPushButton:hover{
-        background-color: red;
+        background-color: white;
     }
 
     QLabel {
